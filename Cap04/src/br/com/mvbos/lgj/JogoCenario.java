@@ -36,7 +36,7 @@ public class JogoCenario extends CenarioPadrao {
 
 	private Elemento[] rastros;
 
-	private Texto texto = new Texto(new Font("Arial", Font.PLAIN, 25));
+	private Texto texto = new Texto(new Font("Ubuntu Mono", Font.PLAIN, 25));
 
 	private Random rand = new Random();
 
@@ -44,6 +44,7 @@ public class JogoCenario extends CenarioPadrao {
 	private int dificuldade = 10;
 
 	private int contadorNivel = 0;
+
 
 	private Estado estado = Estado.JOGANDO;
 
@@ -73,7 +74,7 @@ public class JogoCenario extends CenarioPadrao {
 		}
 
 		char[][] nivelSelecionado = Nivel.niveis[Jogo.nivel];
-		nivel = new Elemento[nivelSelecionado.length * 2];
+		nivel = new Elemento[nivelSelecionado.length * 3];
 
 		for (int linha = 0; linha < nivelSelecionado.length; linha++) {
 			for (int coluna = 1; coluna < nivelSelecionado[0].length; coluna++) {
@@ -117,7 +118,6 @@ public class JogoCenario extends CenarioPadrao {
 				} else if (Jogo.controleTecla[Jogo.Tecla.DIREITA.ordinal()]) {
 					dx = 1;
 				}
-
 				if (dx != 0) {
 					dy = 0;
 					moveu = true;
@@ -182,7 +182,6 @@ public class JogoCenario extends CenarioPadrao {
 					serpente.setAtivo(false);
 					estado = Estado.GANHOU;
 				}
-
 			}
 
 			for (int i = 0; i < contadorRastro; i++) {
@@ -231,9 +230,7 @@ public class JogoCenario extends CenarioPadrao {
 					return;
 				}
 			}
-
 		}
-
 	}
 
 	@Override
@@ -269,5 +266,4 @@ public class JogoCenario extends CenarioPadrao {
 		if (Jogo.pausado)
 			Jogo.textoPausa.desenha(g, "PAUSA", largura / 2 - Jogo.textoPausa.getFonte().getSize(), altura / 2);
 	}
-
 }
