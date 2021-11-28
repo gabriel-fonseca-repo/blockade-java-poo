@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="fontes-master">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/fontes-master.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

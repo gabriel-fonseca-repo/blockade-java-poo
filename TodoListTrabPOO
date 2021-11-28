@@ -1,0 +1,16 @@
+Todo:
+ - Progredir para próximo nível quando o jogador ganhar;
+ - Definir a posição inicial da serpente de acordo com a fase;
+ - Criar cenários com cores diferentes;
+ - Criar um nível costumizado;
+ - Sistema de pontuação:
+    -> Definir um sistema de pontuação para o jogo;
+    -> A pontuação do jogador deverá ser atualizada e ficar visível na tela durante toda a partida;
+ - Ranking:
+    -> No final de cada partida, o jogador deverá informar o seu nome, para que a sua pontuação seja incluída num ranking;
+    -> Após a inclusão de uma pontuação no ranking, este deverá ser classificado em ordem decrescente de pontuação e exibido na tela;
+    -> deverão ser mostrados as 10 maiores pontuações, com o respectivo nome do jogador;
+    -> O ranking deverá ser armazenado (e ordenado) por meio de uma coleção genérica;
+ - Persistência de dados:
+    -> O ranking deverá ser mantido mesmo após a finalização do programa;
+    -> Os dados do ranking deverão ser salvos em (e lidos de) um arquivo txt.
