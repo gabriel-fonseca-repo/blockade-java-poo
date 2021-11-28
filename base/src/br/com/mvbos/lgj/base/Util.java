@@ -25,7 +25,6 @@ public class Util {
 		if (a.getPx() + a.getLargura() >= b.getPx() && a.getPx() <= b.getPx() + b.getLargura()) {
 			return true;
 		}
-
 		return false;
 	}
 
