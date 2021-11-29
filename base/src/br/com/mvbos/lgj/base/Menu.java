@@ -73,5 +73,4 @@ public class Menu extends Texto {
 			idx = 0;
 
 	}
-
 }

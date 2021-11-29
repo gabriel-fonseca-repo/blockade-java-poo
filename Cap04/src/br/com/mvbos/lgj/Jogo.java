@@ -141,7 +141,7 @@ public class Jogo extends JFrame {
 
 		while (true) {
 			if (System.currentTimeMillis() >= prxAtualizacao) {
-				g2d.setColor(Color.MAGENTA);
+				g2d.setColor(Nivel.coresNiveis.get(Jogo.nivel));
 				g2d.fillRect(0, 0, JANELA_LARGURA, JANELA_ALTURA);
 
 				if (controleTecla[Tecla.BA.ordinal()]) {

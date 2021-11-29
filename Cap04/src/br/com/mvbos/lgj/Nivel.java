@@ -1,7 +1,20 @@
 package br.com.mvbos.lgj;
 
+import java.awt.*;
+import java.util.HashMap;
+
 public class Nivel {
 	//18 por 18
+
+	public static HashMap<Integer, Color> coresNiveis;
+	static {
+		coresNiveis = new HashMap();
+		coresNiveis.put(0, Color.CYAN);
+		coresNiveis.put(1, Color.BLUE);
+		coresNiveis.put(2, Color.GRAY);
+	}
+
+
 	public static char[][][] niveis = {
 			{ 		{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 					{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },

@@ -50,13 +50,13 @@ public class InicioCenario extends CenarioPadrao {
 
 		switch (menuVelInicial.getOpcaoId()) {
 		case 0:
-			Jogo.velocidade = 4;
+			Jogo.velocidade = 8;
 			break;
 		case 1:
 			Jogo.velocidade = 8;
 			break;
 		case 2:
-			Jogo.velocidade = 2;
+			Jogo.velocidade = 8;
 		}
 
 	}
