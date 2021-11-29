@@ -33,7 +33,7 @@ public class Jogo extends JFrame {
 
 	private CenarioPadrao cenario;
 
-	public static final Texto textoPausa = new Texto(new Font("Tahoma", Font.PLAIN, 40));
+	public static final Texto textoPausa = new Texto(new Font("Ubuntu Mono", Font.PLAIN, 40));
 
 	public enum Tecla {
 		CIMA, BAIXO, ESQUERDA, DIREITA, BA, BB
@@ -96,7 +96,7 @@ public class Jogo extends JFrame {
 			}
 		});
 
-		buffer = new BufferedImage(JANELA_LARGURA, JANELA_ALTURA, BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(JANELA_LARGURA, JANELA_ALTURA, BufferedImage.TYPE_INT_BGR);
 
 		g2d = buffer.createGraphics();
 
@@ -141,7 +141,7 @@ public class Jogo extends JFrame {
 
 		while (true) {
 			if (System.currentTimeMillis() >= prxAtualizacao) {
-				g2d.setColor(Color.BLACK);
+				g2d.setColor(Color.MAGENTA);
 				g2d.fillRect(0, 0, JANELA_LARGURA, JANELA_ALTURA);
 
 				if (controleTecla[Tecla.BA.ordinal()]) {

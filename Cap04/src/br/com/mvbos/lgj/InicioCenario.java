@@ -16,8 +16,6 @@ public class InicioCenario extends CenarioPadrao {
 
 	private Menu menuVelInicial;
 
-	private Menu menuRaparigagem;
-
 	@Override
 	public void carregar() {
 

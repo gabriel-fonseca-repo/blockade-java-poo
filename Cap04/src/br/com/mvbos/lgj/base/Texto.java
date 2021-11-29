@@ -8,7 +8,7 @@ public class Texto extends Elemento {
 	private Font fonte;
 
 	public Texto() {
-		fonte = new Font("Tahoma", Font.PLAIN, 16);
+		fonte = new Font("Ubuntu Mono", Font.PLAIN, 16);
 	}
 
 	public Texto(Font fonte) {

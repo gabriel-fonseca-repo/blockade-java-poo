@@ -82,7 +82,7 @@ public class JogoCenario extends CenarioPadrao {
 
 					Elemento e = new Elemento();
 					e.setAtivo(true);
-					e.setCor(Color.LIGHT_GRAY);
+					e.setCor(Color.CYAN);
 
 					e.setPx(_LARG * coluna);
 					e.setPy(_LARG * linha);
@@ -114,7 +114,6 @@ public class JogoCenario extends CenarioPadrao {
 			if (dy != 0) {
 				if (Jogo.controleTecla[Jogo.Tecla.ESQUERDA.ordinal()]) {
 					dx = -1;
-
 				} else if (Jogo.controleTecla[Jogo.Tecla.DIREITA.ordinal()]) {
 					dx = 1;
 				}
@@ -122,7 +121,6 @@ public class JogoCenario extends CenarioPadrao {
 					dy = 0;
 					moveu = true;
 				}
-
 			} else if (dx != 0) {
 				if (Jogo.controleTecla[Jogo.Tecla.CIMA.ordinal()]) {
 					dy = -1;
@@ -243,7 +241,6 @@ public class JogoCenario extends CenarioPadrao {
 		for (Elemento e : nivel) {
 			if (e == null)
 				break;
-
 			e.desenha(g);
 		}
 
