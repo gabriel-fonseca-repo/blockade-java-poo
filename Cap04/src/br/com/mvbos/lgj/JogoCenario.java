@@ -62,14 +62,14 @@ public class JogoCenario extends CenarioPadrao {
 		fruta = new Elemento(0, 0, _LARG, _LARG);
 		fruta.setCor(Color.RED);
 
-		serpente = new Elemento(0, 0, _LARG, _LARG);
+		serpente = new Elemento(Nivel.posCobrinha.get(Jogo.nivel)[0], Nivel.posCobrinha.get(Jogo.nivel)[1], _LARG, _LARG);
 		serpente.setAtivo(true);
-		serpente.setCor(Color.YELLOW);
+		serpente.setCor(Nivel.coresCobrinha.get("COBRA"));
 		serpente.setVel(Jogo.velocidade);
 
 		for (int i = 0; i < rastros.length; i++) {
 			rastros[i] = new Elemento(serpente.getPx(), serpente.getPy(), _LARG, _LARG);
-			rastros[i].setCor(Color.GREEN);
+			rastros[i].setCor(Nivel.coresCobrinha.get("RASTRO"));
 			rastros[i].setAtivo(true);
 		}
 

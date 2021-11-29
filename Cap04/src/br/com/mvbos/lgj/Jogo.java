@@ -182,9 +182,8 @@ public class Jogo extends JFrame {
 				}
 
 				if (cenario == null) {
-					g2d.setColor(Color.WHITE);
+					g2d.setColor(Color.BLACK);
 					g2d.drawString("Carregando...", 20, 20);
-
 				} else {
 					if (!Jogo.pausado)
 						cenario.atualizar();

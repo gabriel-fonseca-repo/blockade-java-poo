@@ -50,11 +50,11 @@ public class JogoCenarioDoRusso extends CenarioPadrao {
 		rastros = new Elemento[blocoPorTela + contadorRastro];
 
 		fruta = new Elemento(0, 0, _LARG, _LARG);
-		fruta.setCor(Color.RED);
+		fruta.setCor(Nivel.coresNiveis.get(4));
 
 		serpente = new Elemento(0, 0, _LARG, _LARG);
 		serpente.setAtivo(true);
-		serpente.setCor(Color.YELLOW);
+		serpente.setCor(Nivel.coresCobrinha.get("COBRA"));
 
 		Util.centraliza(serpente, largura, altura);
 
@@ -65,7 +65,7 @@ public class JogoCenarioDoRusso extends CenarioPadrao {
 
 		for (int i = 0; i < rastros.length; i++) {
 			rastros[i] = new Elemento(serpente.getPx(), serpente.getPy(), _LARG, _LARG);
-			rastros[i].setCor(Color.GREEN);
+			rastros[i].setCor(Nivel.coresCobrinha.get("RASTRO"));
 			rastros[i].setAtivo(true);
 		}
 	}

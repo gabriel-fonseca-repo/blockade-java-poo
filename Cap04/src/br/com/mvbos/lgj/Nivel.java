@@ -9,9 +9,28 @@ public class Nivel {
 	public static HashMap<Integer, Color> coresNiveis;
 	static {
 		coresNiveis = new HashMap();
-		coresNiveis.put(0, Color.CYAN);
-		coresNiveis.put(1, Color.BLUE);
-		coresNiveis.put(2, Color.GRAY);
+		coresNiveis.put(0, Color.ORANGE);
+		coresNiveis.put(1, Color.blue);
+		coresNiveis.put(2, Color.DARK_GRAY);
+		coresNiveis.put(3, Color.PINK);
+	}
+	public static HashMap<String, Color> coresCobrinha;
+	static {
+		coresCobrinha = new HashMap();
+		coresCobrinha.put("COBRA", Color.BLACK);
+		coresCobrinha.put("RASTRO", Color.BLACK);
+	}
+	public static HashMap<Integer, int[]> posCobrinha;
+	static {
+		int[] arr1 = new int[]{850, 700};
+		int[] arr2 = new int[]{450, 600};
+		int[] arr3 = new int[]{200, 300};
+		int[] arr4 = new int[]{850, 200};
+		posCobrinha = new HashMap();
+		posCobrinha.put(0, arr1);
+		posCobrinha.put(1, arr2);
+		posCobrinha.put(2, arr3);
+		posCobrinha.put(3, arr4);
 	}
 
 
