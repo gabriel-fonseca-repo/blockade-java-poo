@@ -9,16 +9,18 @@ public class Nivel {
 	public static HashMap<Integer, Color> coresNiveis;
 	static {
 		coresNiveis = new HashMap();
-		coresNiveis.put(0, Color.ORANGE);
+		coresNiveis.put(0, Color.BLACK);
 		coresNiveis.put(1, Color.blue);
 		coresNiveis.put(2, Color.DARK_GRAY);
 		coresNiveis.put(3, Color.PINK);
 	}
-	public static HashMap<String, Color> coresCobrinha;
+	public static HashMap<Integer, Color> coresCobrinha;
 	static {
 		coresCobrinha = new HashMap();
-		coresCobrinha.put("COBRA", Color.BLACK);
-		coresCobrinha.put("RASTRO", Color.BLACK);
+		coresCobrinha.put(0, Color.DARK_GRAY);
+		coresCobrinha.put(1, Color.pink);
+		coresCobrinha.put(2, Color.ORANGE);
+		coresCobrinha.put(3, Color.BLUE);
 	}
 	public static HashMap<Integer, int[]> posCobrinha;
 	static {
@@ -93,11 +95,11 @@ public class Nivel {
 					{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 					{ ' ', '0', '0', '0', '0', '0', '0', '0', '0', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ' },
-					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ' },
-					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ' },
-					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ' },
-					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ' },
+					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', '0', '0', '0', '0', '0', ' ', ' ', ' ', ' ', ' ', ' ' },
 					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 					{ ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },

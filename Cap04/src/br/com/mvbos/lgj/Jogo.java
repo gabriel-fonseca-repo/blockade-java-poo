@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.Serial;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ import br.com.mvbos.lgj.base.Texto;
 
 public class Jogo extends JFrame {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	private static final int FPS = 1000 / 20;
@@ -78,6 +80,8 @@ public class Jogo extends JFrame {
 
 	public static boolean pausado;
 
+	public static boolean ganhou = false;
+
 	public Jogo() {
 		this.addKeyListener(new KeyListener() {
 
@@ -128,7 +132,7 @@ public class Jogo extends JFrame {
 		tela.repaint();
 	}
 
-	private void carregarJogo() {
+	public void carregarJogo() {
 		cenario = new InicioCenario(tela.getWidth(), tela.getHeight());
 		// cenario = new JogoCenario(canvas.getWidth(), canvas.getHeight());
 		// cenario = new JogoCenarioDoRusso(canvas.getWidth(),
@@ -153,7 +157,6 @@ public class Jogo extends JFrame {
 
 						if (Jogo.nivel < Nivel.niveis.length) {
 							cenario = new JogoCenario(tela.getWidth(), tela.getHeight());
-
 						} else {
 							cenario = new JogoCenarioDoRusso(tela.getWidth(), tela.getHeight());
 						}
@@ -170,11 +173,9 @@ public class Jogo extends JFrame {
 					// Pressionou ESQ
 					if (!(cenario instanceof InicioCenario)) {
 						cenario.descarregar();
-
 						cenario = null;
 						cenario = new InicioCenario(tela.getWidth(), tela.getHeight());
 						cenario.carregar();
-
 					}
 
 					liberaTeclas();
@@ -193,6 +194,15 @@ public class Jogo extends JFrame {
 
 				tela.repaint();
 				prxAtualizacao = System.currentTimeMillis() + FPS;
+
+				if (ganhou) {
+					Jogo.nivel++;
+					cenario.descarregar();
+					cenario = null;
+					cenario = new JogoCenario(tela.getWidth(), tela.getHeight());
+					cenario.carregar();
+					ganhou = false;
+				}
 			}
 		}
 	}

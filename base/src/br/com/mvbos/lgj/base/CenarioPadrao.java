@@ -6,6 +6,10 @@ public abstract class CenarioPadrao {
 
 	protected int altura, largura;
 
+	protected enum Estado {
+		JOGANDO, GANHOU, PERDEU
+	}
+
 	public CenarioPadrao(int largura, int altura) {
 		this.altura = altura;
 		this.largura = largura;

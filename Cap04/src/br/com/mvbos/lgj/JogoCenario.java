@@ -41,12 +41,13 @@ public class JogoCenario extends CenarioPadrao {
 	private Random rand = new Random();
 
 	// Frutas para finalizar o level
-	private int dificuldade = 10;
+	private int dificuldade = 1;
 
 	private int contadorNivel = 0;
 
+	public static Estado estado = Estado.JOGANDO;
 
-	private Estado estado = Estado.JOGANDO;
+	public boolean ganhou;
 
 	public JogoCenario(int largura, int altura) {
 		super(largura, altura);
@@ -61,15 +62,15 @@ public class JogoCenario extends CenarioPadrao {
 
 		fruta = new Elemento(0, 0, _LARG, _LARG);
 		fruta.setCor(Color.RED);
-
+		System.out.println(Jogo.nivel);
 		serpente = new Elemento(Nivel.posCobrinha.get(Jogo.nivel)[0], Nivel.posCobrinha.get(Jogo.nivel)[1], _LARG, _LARG);
 		serpente.setAtivo(true);
-		serpente.setCor(Nivel.coresCobrinha.get("COBRA"));
+		serpente.setCor(Color.yellow);
 		serpente.setVel(Jogo.velocidade);
 
 		for (int i = 0; i < rastros.length; i++) {
 			rastros[i] = new Elemento(serpente.getPx(), serpente.getPy(), _LARG, _LARG);
-			rastros[i].setCor(Nivel.coresCobrinha.get("RASTRO"));
+			rastros[i].setCor(Nivel.coresCobrinha.get(Jogo.nivel));
 			rastros[i].setAtivo(true);
 		}
 
@@ -253,11 +254,12 @@ public class JogoCenario extends CenarioPadrao {
 		texto.desenha(g, String.valueOf(rastros.length - contadorRastro), largura - 35, altura);
 
 		if (estado != Estado.JOGANDO) {
-
-			if (estado == Estado.GANHOU)
-				texto.desenha(g, "Ganhou!", 180, 180);
-			else
+			if (estado == Estado.GANHOU){
+				Jogo.ganhou = true;
+				estado = Estado.JOGANDO;
+			} else {
 				texto.desenha(g, "Vixe!", 180, 180);
+			}
 		}
 
 		if (Jogo.pausado)
