@@ -8,12 +8,15 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.Serial;
+import java.io.*;
+import java.sql.SQLOutput;
+import java.util.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import br.com.mvbos.lgj.base.CenarioPadrao;
+import br.com.mvbos.lgj.base.Jogador;
 import br.com.mvbos.lgj.base.Texto;
 
 public class Jogo extends JFrame {
@@ -34,6 +37,10 @@ public class Jogo extends JFrame {
 	private BufferedImage buffer;
 
 	private CenarioPadrao cenario;
+
+	public static File rankingArquivo;
+
+	public static ArrayList<Jogador> ranking;
 
 	public static final Texto textoPausa = new Texto(new Font("Ubuntu Mono", Font.PLAIN, 40));
 
@@ -78,9 +85,15 @@ public class Jogo extends JFrame {
 
 	public static int velocidade;
 
+	public static int pontuacao = 0;
+
 	public static boolean pausado;
 
 	public static boolean ganhou = false;
+
+	public static boolean reiniciarJogo = false;
+
+	public static boolean fimdejogo = false;
 
 	public Jogo() {
 		this.addKeyListener(new KeyListener() {
@@ -132,11 +145,54 @@ public class Jogo extends JFrame {
 		tela.repaint();
 	}
 
+	public void carregarRanking() throws FileNotFoundException {
+		rankingArquivo = new File("ranking.txt");
+		ranking = new ArrayList<>();
+		Scanner leitor = new Scanner(rankingArquivo);
+		while(leitor.hasNextLine()) {
+			String dados = leitor.nextLine();
+			String[] split = dados.split("/");
+			ranking.add(new Jogador(Integer.parseInt(split[0]), split[1]));
+		}
+		ranking.sort(new ComparaPontos());
+	}
+
+	public static class ComparaPontos implements Comparator<Jogador> {
+		@Override
+		public int compare(Jogador j1, Jogador j2){
+			if (j1.getPontos() < j2.getPontos()) {
+				return -1;
+			} else if (j1.getPontos() > j2.getPontos()) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+	}
+
+	public static void registrarRanking() {
+		Scanner entrada = new Scanner(System.in);
+		System.out.print("Seus pontos: " + pontuacao);
+		System.out.println();
+		System.out.print("Digite seu nome: ");
+		String nomejogador = entrada.nextLine();
+		ranking.add(new Jogador(pontuacao, nomejogador));
+		try {
+			FileWriter escreverRanking = new FileWriter("ranking.txt", true);
+			escreverRanking.write(String.valueOf(pontuacao)+"/"+nomejogador+"\n");
+			escreverRanking.close();
+		} catch (IOException e) {
+			System.out.println("erro ao ler o arquivo no filewriter");
+		}
+		pontuacao = 0;
+		fimdejogo = false;
+		reiniciarJogo = true;
+		ranking.sort(new ComparaPontos());
+		System.out.println("Pressione ESC para voltar a tela inicial!");
+	}
+
 	public void carregarJogo() {
 		cenario = new InicioCenario(tela.getWidth(), tela.getHeight());
-		// cenario = new JogoCenario(canvas.getWidth(), canvas.getHeight());
-		// cenario = new JogoCenarioDoRusso(canvas.getWidth(),
-		// canvas.getHeight());
 		cenario.carregar();
 	}
 
@@ -173,6 +229,7 @@ public class Jogo extends JFrame {
 					// Pressionou ESQ
 					if (!(cenario instanceof InicioCenario)) {
 						cenario.descarregar();
+						reiniciarJogo = true;
 						cenario = null;
 						cenario = new InicioCenario(tela.getWidth(), tela.getHeight());
 						cenario.carregar();
@@ -197,6 +254,9 @@ public class Jogo extends JFrame {
 
 				if (ganhou) {
 					Jogo.nivel++;
+					if (Jogo.nivel > 3) {
+						Jogo.nivel = 0;
+					}
 					cenario.descarregar();
 					cenario = null;
 					cenario = new JogoCenario(tela.getWidth(), tela.getHeight());
@@ -207,8 +267,9 @@ public class Jogo extends JFrame {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		Jogo jogo = new Jogo();
+		jogo.carregarRanking();
 		jogo.carregarJogo();
 		jogo.iniciarJogo();
 	}

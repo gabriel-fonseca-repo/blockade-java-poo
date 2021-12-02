@@ -3,6 +3,7 @@ package br.com.mvbos.lgj;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.io.IOException;
 import java.util.Random;
 
 import br.com.mvbos.lgj.base.CenarioPadrao;
@@ -56,13 +57,19 @@ public class JogoCenario extends CenarioPadrao {
 	@Override
 	public void carregar() {
 
+		if (Jogo.reiniciarJogo == true) {
+			estado = Estado.JOGANDO;
+			Jogo.pontuacao = 0;
+			Jogo.reiniciarJogo = false;
+		}
+
 		// define direcao inicial
 		dy = 1;
 		rastros = new Elemento[dificuldade + RASTRO_INICIAL];
 
 		fruta = new Elemento(0, 0, _LARG, _LARG);
 		fruta.setCor(Color.RED);
-		System.out.println(Jogo.nivel);
+//		System.out.println(Jogo.nivel);
 		serpente = new Elemento(Nivel.posCobrinha.get(Jogo.nivel)[0], Nivel.posCobrinha.get(Jogo.nivel)[1], _LARG, _LARG);
 		serpente.setAtivo(true);
 		serpente.setCor(Color.yellow);
@@ -149,6 +156,7 @@ public class JogoCenario extends CenarioPadrao {
 			if (Util.saiu(serpente, largura, altura)) {
 				serpente.setAtivo(false);
 				estado = Estado.PERDEU;
+				Jogo.fimdejogo = true;
 
 			} else {
 
@@ -157,6 +165,7 @@ public class JogoCenario extends CenarioPadrao {
 					if (Util.colide(serpente, nivel[i])) {
 						serpente.setAtivo(false);
 						estado = Estado.PERDEU;
+						Jogo.fimdejogo = true;
 						break;
 					}
 				}
@@ -166,6 +175,7 @@ public class JogoCenario extends CenarioPadrao {
 					if (Util.colide(serpente, rastros[i])) {
 						serpente.setAtivo(false);
 						estado = Estado.PERDEU;
+						Jogo.fimdejogo = true;
 						break;
 					}
 				}
@@ -175,6 +185,7 @@ public class JogoCenario extends CenarioPadrao {
 				// Adiciona uma pausa
 				temporizador = -10;
 				contadorRastro++;
+				Jogo.pontuacao += 10;
 				fruta.setAtivo(false);
 
 				if (contadorRastro == rastros.length) {
@@ -252,13 +263,17 @@ public class JogoCenario extends CenarioPadrao {
 		serpente.desenha(g);
 
 		texto.desenha(g, String.valueOf(rastros.length - contadorRastro), largura - 35, altura);
+		texto.desenha(g, "Pontos: ", largura - 160, altura);
+		texto.desenha(g, String.valueOf(Jogo.pontuacao), largura - 70, altura);
+		if (Jogo.fimdejogo)
+			texto.desenha(g, "Vixe!", 450, 100);
 
 		if (estado != Estado.JOGANDO) {
 			if (estado == Estado.GANHOU){
 				Jogo.ganhou = true;
 				estado = Estado.JOGANDO;
-			} else {
-				texto.desenha(g, "Vixe!", 180, 180);
+			} else if (Jogo.fimdejogo){
+				Jogo.registrarRanking();
 			}
 		}
 
