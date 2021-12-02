@@ -137,6 +137,7 @@ public class Jogo extends JFrame {
 		};
 
 		getContentPane().add(tela);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		pack();
