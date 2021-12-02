@@ -42,7 +42,7 @@ public class JogoCenario extends CenarioPadrao {
 	private Random rand = new Random();
 
 	// Frutas para finalizar o level
-	private int dificuldade = 1;
+	private int dificuldade = 5;
 
 	private int contadorNivel = 0;
 
@@ -265,6 +265,7 @@ public class JogoCenario extends CenarioPadrao {
 		texto.desenha(g, String.valueOf(rastros.length - contadorRastro), largura - 35, altura);
 		texto.desenha(g, "Pontos: ", largura - 160, altura);
 		texto.desenha(g, String.valueOf(Jogo.pontuacao), largura - 70, altura);
+
 		if (Jogo.fimdejogo)
 			texto.desenha(g, "Vixe!", 450, 100);
 

@@ -12,8 +12,7 @@ import java.io.*;
 import java.sql.SQLOutput;
 import java.util.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import br.com.mvbos.lgj.base.CenarioPadrao;
 import br.com.mvbos.lgj.base.Jogador;
@@ -162,9 +161,9 @@ public class Jogo extends JFrame {
 		@Override
 		public int compare(Jogador j1, Jogador j2){
 			if (j1.getPontos() < j2.getPontos()) {
-				return -1;
-			} else if (j1.getPontos() > j2.getPontos()) {
 				return 1;
+			} else if (j1.getPontos() > j2.getPontos()) {
+				return -1;
 			} else {
 				return 0;
 			}
@@ -175,12 +174,12 @@ public class Jogo extends JFrame {
 		Scanner entrada = new Scanner(System.in);
 		System.out.print("Seus pontos: " + pontuacao);
 		System.out.println();
-		System.out.print("Digite seu nome: ");
-		String nomejogador = entrada.nextLine();
-		ranking.add(new Jogador(pontuacao, nomejogador));
+		String nomeJogador = JOptionPane.showInputDialog("Digite seu nome para guardar no ranking: ");
+		System.out.println(nomeJogador);
+		ranking.add(new Jogador(pontuacao, nomeJogador));
 		try {
 			FileWriter escreverRanking = new FileWriter("ranking.txt", true);
-			escreverRanking.write(String.valueOf(pontuacao)+"/"+nomejogador+"\n");
+			escreverRanking.write(String.valueOf(pontuacao)+"/"+nomeJogador+"\n");
 			escreverRanking.close();
 		} catch (IOException e) {
 			System.out.println("erro ao ler o arquivo no filewriter");
@@ -257,6 +256,7 @@ public class Jogo extends JFrame {
 					Jogo.nivel++;
 					if (Jogo.nivel > 3) {
 						Jogo.nivel = 0;
+						Jogo.velocidade++;
 					}
 					cenario.descarregar();
 					cenario = null;

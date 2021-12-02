@@ -1,9 +1,10 @@
 package br.com.mvbos.lgj;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 
 import br.com.mvbos.lgj.base.CenarioPadrao;
 import br.com.mvbos.lgj.base.Menu;
+import br.com.mvbos.lgj.base.Texto;
 import br.com.mvbos.lgj.base.Util;
 
 public class InicioCenario extends CenarioPadrao {
@@ -15,6 +16,8 @@ public class InicioCenario extends CenarioPadrao {
 	private Menu menuJogo;
 
 	private Menu menuVelInicial;
+
+	private Texto texto = new Texto(new Font("Ubuntu Mono", Font.PLAIN, 16));
 
 	@Override
 	public void carregar() {
@@ -81,10 +84,20 @@ public class InicioCenario extends CenarioPadrao {
 
 	}
 
+	public void renderRank(Graphics2D g) {
+
+
+	}
+
 	@Override
 	public void desenhar(Graphics2D g) {
 		menuJogo.desenha(g);
 		menuVelInicial.desenha(g);
+		int difAltura = 30;
+		Util.centraliza(texto, largura, altura);
+		for (int i = 0; i < 9; i++) {
+			texto.desenha(g, String.valueOf(Jogo.ranking.get(i).pontos) + " " + Jogo.ranking.get(i).nome, menuVelInicial.getPx(), menuVelInicial.getAltura()+menuVelInicial.getPy()+difAltura);
+			difAltura+=30;
+		}
 	}
-
 }
