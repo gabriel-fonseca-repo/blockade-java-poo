@@ -61,7 +61,6 @@ public class InicioCenario extends CenarioPadrao {
 		case 2:
 			Jogo.velocidade = 8;
 		}
-
 	}
 
 	@Override
@@ -84,18 +83,13 @@ public class InicioCenario extends CenarioPadrao {
 
 	}
 
-	public void renderRank(Graphics2D g) {
-
-
-	}
-
 	@Override
 	public void desenhar(Graphics2D g) {
 		menuJogo.desenha(g);
 		menuVelInicial.desenha(g);
 		int difAltura = 30;
 		Util.centraliza(texto, largura, altura);
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < Jogo.ranking.size(); i++) {
 			texto.desenha(g, String.valueOf(Jogo.ranking.get(i).pontos) + " " + Jogo.ranking.get(i).nome, menuVelInicial.getPx(), menuVelInicial.getAltura()+menuVelInicial.getPy()+difAltura);
 			difAltura+=30;
 		}

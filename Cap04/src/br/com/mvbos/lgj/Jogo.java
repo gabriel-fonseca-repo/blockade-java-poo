@@ -171,11 +171,7 @@ public class Jogo extends JFrame {
 	}
 
 	public static void registrarRanking() {
-		Scanner entrada = new Scanner(System.in);
-		System.out.print("Seus pontos: " + pontuacao);
-		System.out.println();
 		String nomeJogador = JOptionPane.showInputDialog("Digite seu nome para guardar no ranking: ");
-		System.out.println(nomeJogador);
 		ranking.add(new Jogador(pontuacao, nomeJogador));
 		try {
 			FileWriter escreverRanking = new FileWriter("ranking.txt", true);
@@ -261,6 +257,11 @@ public class Jogo extends JFrame {
 					cenario.descarregar();
 					cenario = null;
 					cenario = new JogoCenario(tela.getWidth(), tela.getHeight());
+					try {
+						carregarRanking();
+					} catch (FileNotFoundException e) {
+						System.out.println("Falha ao recarregar arquivo");
+					}
 					cenario.carregar();
 					ganhou = false;
 				}
